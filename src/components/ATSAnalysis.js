@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { buildATSAnalysisPrompt } from "../utils/promptBuilder";
+import { buildATSAnalysisPrompt, resumeTemplate } from "../utils/promptBuilder";
 import { callGeminiATSAPI } from "../utils/apiHandler";
 
 function ATSAnalysis({ jobDesc }) {
@@ -11,15 +11,17 @@ function ATSAnalysis({ jobDesc }) {
   const [loading, setLoading] = useState(false);
 
   const handleAnalyze = async () => {
+    console.log("the handle analyze function is aclled in atsanalysis file");
     if (!resumeText.trim() || !jobDesc.trim()) return;
 
     setLoading(true);
     const prompt = buildATSAnalysisPrompt({
-      resumeLatex: resumeText,
+      resumeTemplate: resumeTemplate.full,
       jobDescription: jobDesc,
     });
-
+    console.log("the prompt is", prompt);
     const result = await callGeminiATSAPI(prompt);
+    console.log("the result from ats analysis is", result);
 
     setAtsScore(result.atsScore);
     setGaps(result.gaps || []);

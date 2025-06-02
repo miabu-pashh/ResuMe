@@ -5,11 +5,18 @@ import {
   resumeTemplate,
   coverLetterTemplate,
   coldEmailTemplate,
+  buildLinkedInMessagePrompt,
+  buildCoverLetterUpdatePrompt,
 } from "../utils/promptBuilder";
 import { buildGeminiPromptForJD } from "../utils/promptBuilder";
 
-import { callGeminiAPIforJD } from "../utils/apiHandler";
-import { callGeminiAPI } from "../utils/apiHandler";
+import {
+  callGeminiAPIforJD,
+  callGeminiAPI,
+  callGeminiAPIForLinkedInMessage,
+  callGeminiAPIForCoverLetterUpdate,
+} from "../utils/apiHandler";
+
 import "../CSS/JDInput.css";
 
 import { useNavigate } from "react-router-dom";
@@ -23,7 +30,10 @@ function JDInput({ onJDUpdate }) {
   const [adonsLatex, setAdonsLatex] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
   const [coldEmail, setColdEmail] = useState("");
+
   const [FinalResumeLatex, setFinalResumeLatex] = useState("");
+
+  const [linkedinMessage, setLinkedinMessage] = useState("");
 
   const [showModal, setShowModal] = useState(false); // Controls popup visibility
   const [latexResume, setLatexResume] = useState(""); // Stores pasted LaTeX resume
@@ -32,6 +42,12 @@ function JDInput({ onJDUpdate }) {
 
   const [jobResult, setJobResult] = useState("");
   const [showJobModal, setShowJobModal] = useState(false);
+
+  const todayDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   const handleJD = async () => {
     if (!jobDesc.trim()) return;
@@ -48,7 +64,6 @@ function JDInput({ onJDUpdate }) {
     setJobResult(result.result || "");
     setLoading(false);
     setShowJobModal(true);
-    // setJobModal(true);
   };
 
   const handleGenerate = async () => {
@@ -73,6 +88,52 @@ function JDInput({ onJDUpdate }) {
     setColdEmail(result.coldEmail || "");
     setFinalResumeLatex(result.FinalResumeLatex || "");
     setLoading(false);
+  };
+
+  const handleLinkedInMessage = async () => {
+    if (!jobDesc.trim()) return;
+    console.log(
+      "🚀 ~ file: JDInput.js:88 ~ handleLinkedInMessage ~ jobDesc:",
+      jobDesc
+    );
+    setLoading(true);
+    const prompt = buildLinkedInMessagePrompt({
+      jobDescription: jobDesc,
+      resumeTemplate: resumeTemplate.full,
+    });
+    const result = await callGeminiAPIForLinkedInMessage(prompt);
+    console.log("the result in jdinput file is ", result);
+    setLinkedinMessage(result.linkedinMessage || "");
+    setLoading(false);
+  };
+
+  const handleCoverLetterUpdate = async () => {
+    console.log(
+      "the handle cover letter update is called in jd input function"
+    );
+    if (!jobDesc.trim()) return;
+    setLoading(true);
+
+    const prompt = buildCoverLetterUpdatePrompt({
+      jobDescription: jobDesc,
+      resumeTemplate: resumeTemplate.full,
+      coverLetterTemplate,
+      todayDate,
+    });
+    console.log("the prompt in jd input file is ", prompt);
+
+    const { updatedCoverLetter } = await callGeminiAPIForCoverLetterUpdate(
+      prompt
+    );
+    console.log("the updated cover letter is ", updatedCoverLetter);
+
+    setLoading(false);
+    navigate("/cover-letter-update", {
+      state: {
+        template: coverLetterTemplate,
+        updated: updatedCoverLetter,
+      },
+    });
   };
 
   const renderBox = (title, content) => (
@@ -109,17 +170,32 @@ function JDInput({ onJDUpdate }) {
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
+          <div className="button-container">
+            <button onClick={handleJD} disabled={loading}>
+              {loading ? "Checking Job..." : "Job Matching/Unmatching"}
+            </button>
 
-          <button
-            className="generate-btn"
-            onClick={handleJD}
-            disabled={loading}
-          >
+            <button onClick={handleGenerate} disabled={loading}>
+              {loading ? "Generating..." : "Generate Tailored Content"}
+            </button>
 
-            {loading ? "Checking Job..." : "Job Matching/Unmatching"}
-          </button>
+            <button
+              className="linkedin-btn"
+              onClick={handleLinkedInMessage}
+              disabled={loading}
+            >
+              💬 Generate LinkedIn Message
+            </button>
 
-          
+            <button onClick={() => navigate("/ats-analysis")}>
+              🔍 Compare Resume with JD (ATS Score)
+            </button>
+
+            <button onClick={handleCoverLetterUpdate} disabled={loading}>
+              ✉️ Generate Cover Letter
+            </button>
+          </div>
+
           {jobResult && (
             <div className="overlay">
               <div className="modal job-analysis-modal">
@@ -142,38 +218,19 @@ function JDInput({ onJDUpdate }) {
             </div>
           )}
 
-          <button
-            className="generate-btn"
-            onClick={handleGenerate}
-            disabled={loading}
-          >
-            {loading ? "Generating..." : "Generate Tailored Content"}
-          </button>
-          <button
-            style={{
-              marginTop: "1rem",
-              backgroundColor: "#004aad",
-              color: "white",
-              padding: "0.5rem 1rem",
-              border: "none",
-              borderRadius: "4px",
-            }}
-            onClick={() => navigate("/ats-analysis")}
-          >
-            🔍 Compare Resume with JD (ATS Score)
-          </button>
+          {linkedinMessage &&
+            renderBox("LinkedIn Message to Recruiter", linkedinMessage)}
 
           <div className="mini-grid">
-            {renderBox("Final Resume", FinalResumeLatex)}
             {renderBox("Summary", summaryLatex)}
             {renderBox("Tech Skills", skillsLatex)}
             {renderBox("Met Life Work Exp", `${metlifeLatex}`)}
-            {/* {renderBox("Work Exp", `${metlifeLatex}\n\n${adonsLatex}`)} */}
             {renderBox("Adons Work Exp", `${adonsLatex}`)}
           </div>
         </div>
 
         <div className="right-panel">
+          {renderBox("Final Resume", FinalResumeLatex)}
           {renderBox("CoverLetter For Given Job", coverLetter)}
           {renderBox("ColdMail For Given Job", coldEmail)}
         </div>

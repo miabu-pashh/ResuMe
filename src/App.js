@@ -7,6 +7,9 @@ import ResumeDiffViewer from "./components/ResumeDiffViewer";
 import "./App.css";
 import ATSAnalysis from "./components/ATSAnalysis";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CoverLetterPage from "./components/CoverLetterPage"; // <- new
+
+
 function App() {
   const [activeTab, setActiveTab] = useState("resume");
   const [jobDescription, setJobDescription] = useState("");
@@ -23,6 +26,7 @@ function App() {
           path="/ats-analysis"
           element={<ATSAnalysis jobDesc={jobDescription} />}
         />
+        <Route path="/cover-letter-update" element={<CoverLetterPage />} />
       </Routes>
     </Router>
   );
