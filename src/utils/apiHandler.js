@@ -40,16 +40,6 @@ export async function callGeminiAPI(prompt) {
       console.error("❓ Problematic Response:\n", cleaned); // 🧪 help spot what's wrong
       throw new Error("Failed to parse Gemini JSON response");
     }
-    // 🧠 Smart handling based on response shape
-    // if ("analysis" in parsed) {
-    //   // This is from ATS analysis prompt
-    //   return {
-    //     atsScore: parsed.atsScore,
-    //     gaps: parsed.gaps,
-    //     improvements: parsed.improvements,
-    //     summary: parsed.summary,
-    //   };
-    // }
 
     return {
       summaryLatex: parsed.summaryLatex || "",
@@ -180,5 +170,89 @@ export async function callGeminiAPIforJD(prompt) {
     return {
       result: "",
     };
+  }
+}
+
+export async function callGeminiAPIForLinkedInMessage(prompt) {
+  const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
+  try {
+    console.log("🛠️ Prompt Sent to Gemini:\n", prompt); // 🔍 log the prompt
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      {
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: prompt }],
+          },
+        ],
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const raw = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const cleaned = raw.replace(/```json|```/g, "").trim();
+
+    let parsed = {};
+    try {
+      parsed = JSON.parse(cleaned);
+      console.log("📩 Cleaned Gemini Response:\n", cleaned); // 🔍 log the cleaned response
+    } catch (err) {
+      console.error("❌ LinkedIn Message JSON Parse Error:", err);
+      console.error("❓ Problematic Response:\n", cleaned);
+      throw new Error("Failed to parse LinkedIn Message response");
+    }
+
+    return {
+      linkedinMessage: parsed.linkedinMessage || "",
+    };
+  } catch (error) {
+    console.error(
+      "Gemini LinkedIn API Error:",
+      error.response?.data || error.message
+    );
+    return {
+      linkedinMessage: "",
+    };
+  }
+}
+
+export async function callGeminiAPIForCoverLetterUpdate(prompt) {
+  const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
+  console.log("🛠️ The api handler functions is triggered"); // 🔍 log the prompt
+  console.log("🛠️ Prompt Sent to Gemini:\n", prompt); // 🔍 log the prompt
+
+  try {
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      {
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: prompt }],
+          },
+        ],
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const raw = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    console.log("📩 Updated Cover Letter Response:\n", raw);
+
+    return { updatedCoverLetter: raw };
+  } catch (error) {
+    console.error(
+      "❌ Gemini Cover Letter API Error:",
+      error.response?.data || error.message
+    );
+    return { updatedCoverLetter: "Error generating updated cover letter." };
   }
 }

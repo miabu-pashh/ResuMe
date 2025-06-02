@@ -54,7 +54,7 @@ Based on the job description below:
    - Return the full LaTeX block for Adons Soft Tech.
 
 
-5. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
+5. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. Make sure you update todays date and company address and all the [] wich needs to be filled according to the given job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
 
 6. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume. make sure to update the cold email template with the job. make sure to include the missing values in the cold email template.
 7.With the above poits updated for latex,  Give me the Final latex code for the resume.
@@ -97,18 +97,20 @@ export const resumeTemplate = {
 \\newcommand{\\tab}[1]{\\hspace{.2667\\textwidth}\\rlap{#1}} 
 \\newcommand{\\itab}[1]{\\hspace{0em}\\rlap{#1}}
 \\renewcommand{\\namesize}{\\large}
-\\usepackage{graphicx}
-\\usepackage{enumitem}
 
 
 \\name{\\textbf{Mahaboob Pasha Mohammad}}
-\\address{Software Engineer \\ \\href{https://miabu-pashh.github.io/Portfolio-maibu/}{Website}}
-\\address{Saint Louis, MO \\ +1 (314) 305 6056 \\ \\href{mailto:mahaboobpashamohammad1@gmail.com}{mahaboobpashamohammad1@gmail.com} \\ \\href{https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/}{LinkedIn}}
+\\address{Software Engineer \\\\ \\href{https://miabu-pashh.github.io/Portfolio-maibu/}{Website}}
+\\address{Saint Louis, MO \\\\ +1 (314) 305 6056 \\\\ \\href{mailto:mahaboobpashamohammad1@gmail.com}{mahaboobpashamohammad1@gmail.com} \\\\ \\href{https://www.linkedin.com/in/mohammad-mahaboob-pasha/}{LinkedIn}}
+
+\\usepackage{graphicx}
+\\usepackage{enumitem} 
+
 \\begin{document}
 \\vspace{-1em}
 \\begin{rSection}{Summary}
 \\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item Software Engineer with expertise in Banking, HealthCare, and eCommerce sectors using Java Full Stack Development (React/Angular) with 4+ years of experience delivering robust and scalable software solutions.
+    \\item Software Engineer with expertise in Banking, HealthCare, and eCommerce sectors using Java Full Stack Development (React/Angular) with \\textbf{4+} years of experience delivering robust and scalable software solutions.
 \\end{itemize}
 \\end{rSection}
 \\vspace{-0.8em}
@@ -116,11 +118,11 @@ export const resumeTemplate = {
 \\begin{tabular}{ @{} >{\\bfseries}l @{\\hspace{2ex}} l }
 Languages & Core \\& Advanced Java, Java 8/11, Python, C, C++, Golang, SQL \\\\
 Methodologies \\& OS & SDLC, Agile, Waterfall, Requirements Gathering, Linux, Windows, MacOS \\\\
-Frameworks \\& IDEs & Spring (MVC, Boot, Security), Microservices, Hibernate, JPA, JSF, React.JS, Vue.JS, Node.JS, Eclipse, IntelliJ, VS Code \\\\
+Frameworks \\& IDEs & SpringBoot, Microservices, Hibernate, JPA, JSF, React.JS, Vue.JS, Node.JS. \\\\
 Web Technologies & HTML, CSS, JavaScript, TypeScript, Next.js, Bootstrap, jQuery, Ajax, JSON, XML \\\\
-Cloud \\& Application Servers & Oracle Fusion ERP (exposure), AWS (VPC, EC2, S3, CloudFront, ELB), Azure, Tomcat, IBM WebSphere, Docker, Balena OS \\\\
+Cloud \\& Application Servers & Oracle Fusion ERP (exposure), AWS (VPC, EC2, S3, ELB), Azure, Tomcat, Docker \\\\
 Version Control \\& Tools & Git, GitHub, Maven, Gradle, Jira, Jenkins, JUnit, JMeter, CI/CD, Lucidchart, Visio \\\\
-Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets, JSP, JSTL, JDBC, JavaBeans, JavaMail, Stored Procedures, SQL Triggers \\\\
+Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets, JSP, JSTL, JDBC, JavaBeans, JavaMail \\\\
 \\end{tabular}
 \\end{rSection}
 
@@ -144,7 +146,7 @@ website to reduce the confusion among new customers visiting the website, improv
     \\item \\textbf {Mendix Development}: Collaborated on Siemens web portal using Mendix and Java, achieving a \\textbf{80\\%} reduction in development time and streamlined backend enhancements.
 \\end{itemize}
 
-\\vspace{-1.5em}
+\\vspace{-0.5em}
 \\textbf{Software Engineer} \\textbar{} Adons Soft Tech \\textbar{} India \\hfill \\textbf{Jan 2020 -- Aug 2021}
 \\vspace{-0.5em}
 \\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
@@ -172,8 +174,8 @@ website to reduce the confusion among new customers visiting the website, improv
 
 \\vspace{-0.8em}
 \\begin{rSection}{Education}
-\\textbf{Master of Science in Computer Software Engineering} \\textbar{} Saint Louis University, Missouri, USA \\\\
-\\textbf{Bachelor of Engineering in Mechanical Engineering} \\textbar{} GRIET, Telangana, India
+\\textbf{Master of Science in Computer Software Engineering} \\textbar{} Saint Louis University, Missouri,  United States. \\\\
+\\textbf{Bachelor of Engineering in Mechanical Engineering} \\textbar{} Gokaraju Rangaraju Institute of Engineering and Technology, , Telangana, India
 \\end{rSection}
 \\end{document}
 `,
@@ -181,9 +183,8 @@ website to reduce the confusion among new customers visiting the website, improv
 
 // / coverLetterTemplate.js
 export const coverLetterTemplate = `
-Mahaboob Pasha Mohammad  
-mahaboobpashamohammad1@gmail.com | +(314)-305-6056 | 3615 Olive Street, Apt 1405  
-
+                      Mahaboob Pasha Mohammad  
+mahaboobpashamohammad1@gmail.com | +(314)-305-6056 | 3615 Olive Street, Apt 1405
 [Today’s Date]  
 Hiring Manager  
 [Company Address]  
@@ -206,7 +207,7 @@ Thank you for considering my application. I’ve attached my resume for your rev
 
 Warm regards,  
 Mahaboob Pasha Mohammad  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha/  
 Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
 GitHub: https://github.com/miabu-pashh
 `;
@@ -226,7 +227,7 @@ Thank you for your time and consideration.
 Best regards,  
 Mahaboob Pasha Mohammad  
 mahaboobpashamohammad1@gmail.com | (314) 305-6056  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha/  
 Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
 GitHub: https://github.com/miabu-pashh
 `;
@@ -245,7 +246,7 @@ Thanks so much for your time and support!
 Warm regards,  
 Mahaboob Pasha Mohammad  
 mahaboobpashamohammad1@gmail.com | (314) 305-6056  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha/  
 Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/
 `;
 
@@ -263,19 +264,25 @@ Thank you for your time and consideration.
 Best regards,  
 Mahaboob Pasha Mohammad  
 mahaboobpashamohammad1@gmail.com | (314) 305-6056  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha/  
 Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
 GitHub: https://github.com/miabu-pashh
 `;
 
 export function buildATSAnalysisPrompt({ jobDescription, resumeTemplate }) {
+  console.log(
+    "🚀 In the build prompt file , buildATSAnalysisPrompt called with:"
+  );
   return `
 You're an ATS (Applicant Tracking System) expert. Your job is to compare the job description and resume and return an analysis in structured JSON format.
   
  ============================
-  🧾 RESUME (latex):
-  ============================
-  ${resumeTemplate}
+📄 RESUME (LaTeX Format):
+============================
+This is the original LaTeX resume template:
+\`\`\`latex
+${resumeTemplate}
+\`\`\`
   ============================
   📌 JOB DESCRIPTION
   ============================
@@ -351,5 +358,86 @@ Respond ONLY with valid JSON in the following format:
 }
 
 Do NOT include markdown or commentary outside the JSON.
+`.trim();
+}
+
+// On 05/23/2025 Friday
+
+export function buildLinkedInMessagePrompt({ jobDescription, resumeTemplate }) {
+  console.log("🚀 buildLinkedInMessagePrompt called with:");
+  return `
+You are an expert in writing short, professional messages to recruiters on LinkedIn.
+
+============================
+📄 RESUME (LaTeX Format):
+============================
+This is the original LaTeX resume template:
+\`\`\`latex
+${resumeTemplate}
+\`\`\`
+
+============================
+📌 JOB DESCRIPTION:
+============================
+${jobDescription}
+
+============================
+✅ YOUR TASK:
+============================
+Write a **short LinkedIn message (under 300 characters)** that:
+1. Expresses interest in the job.
+2. Highlights 1–2 relevant strengths from the resume.
+3. Is polite and professional.
+4. Avoids buzzwords, fluff, or excessive detail.
+5. Sounds natural and human—not robotic.
+6. Makes the reader want to connect or respond.
+
+============================
+📝 OUTPUT FORMAT:
+============================
+Respond ONLY with valid JSON:
+{
+  "linkedinMessage": "Your 1-line message here"
+}
+`.trim();
+}
+export function buildCoverLetterUpdatePrompt({
+  jobDescription,
+  resumeTemplate,
+  coverLetterTemplate,
+  todayDate,
+}) {
+  return `
+You are an expert job application assistant.
+
+============================
+📄 RESUME (LaTeX Format):
+============================
+\`\`\`latex
+${resumeTemplate}
+\`\`\`
+
+============================
+📌 JOB DESCRIPTION:
+============================
+${jobDescription}
+
+============================
+✉️ COVER LETTER TEMPLATE:
+============================
+\`\`\`
+${coverLetterTemplate}
+\`\`\`
+
+============================
+✅ YOUR TASK:
+============================
+Update the cover letter using the resume and job description.
+
+- Insert this exact date: **${todayDate}** where applicable.
+- Extract the company name and address from the job description and include it under the date.
+- Highlight any changed or inserted content using double asterisks (e.g., **React**, **problem-solving**, etc.).
+- Do not remove existing content. Retain original structure and tone.
+- Return only the updated plain text cover letter.
 `.trim();
 }

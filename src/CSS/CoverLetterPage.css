@@ -1,0 +1,67 @@
+.cover-page {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.cover-header {
+  background-color: #4cc1ec;
+  color: black;
+  text-align: center;
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  padding: 0.5rem 1rem;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cover-grid {
+  display: flex;
+  gap: 2rem;
+  /* margin-top: 2rem; */
+}
+
+.cover-box {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cover-box textarea {
+  height: 400px;
+  width: 95%;
+  resize: vertical;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f7f9fc;
+  font-family: monospace;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-buttons button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.action-buttons button:hover {
+  background-color: #005fa3;
+}
