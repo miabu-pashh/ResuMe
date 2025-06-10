@@ -7,7 +7,7 @@ export async function callGeminiAPI(prompt) {
   const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
 
   try {
-    console.log("🛠️ Prompt Sent to Gemini:\n", prompt); // 🔍 log the prompt
+    console.log("🛠️ Prompt Sent to Gemini:\n"); // 🔍 log the prompt
 
     const response = await axios.post(
       `${GEMINI_API_URL}?key=${apiKey}`,
@@ -25,16 +25,21 @@ export async function callGeminiAPI(prompt) {
         },
       }
     );
+    console.log("📩 Gemini API Response:\n"); // 🔍 log the response
 
     const raw = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     console.log("📩 Raw Gemini Response:\n", raw); // 🔍 log the raw response
 
     // 🧹 Clean and parse JSON safely
-    const cleaned = raw.replace(/```json|```/g, "").trim();
+    let cleaned = raw.replace(/```json|```/g, "").trim();
+    // HEAL JSON: escape unescaped backslashes for JSON safety!
+    cleaned = cleaned.replace(/([^\\])\\(?![\\nt"\/bfru])/g, "$1\\\\");
 
+    // console.log("cleaned data", cleaned);
     let parsed = {};
     try {
       parsed = JSON.parse(cleaned);
+      console.log("📩 parsed Gemini Response:\n", parsed); // 🔍 log the cleaned response
     } catch (err) {
       console.error("❌ JSON Parse Error:", err);
       console.error("❓ Problematic Response:\n", cleaned); // 🧪 help spot what's wrong

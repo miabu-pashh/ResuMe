@@ -175,7 +175,7 @@ website to reduce the confusion among new customers visiting the website, improv
 \\vspace{-0.8em}
 \\begin{rSection}{Education}
 \\textbf{Master of Science in Computer Software Engineering} \\textbar{} Saint Louis University, Missouri,  United States. \\\\
-\\textbf{Bachelor of Engineering in Mechanical Engineering} \\textbar{} Gokaraju Rangaraju Institute of Engineering and Technology, , Telangana, India
+\\textbf{B.Tech in Mechanical Engineering} \\textbar{} Gokaraju Rangaraju Institute of Engineering and Technology, Telangana, India
 \\end{rSection}
 \\end{document}
 `,
