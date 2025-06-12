@@ -52,12 +52,13 @@ Based on the job description below:
    -No buzz words add a quantitaive measure for the new bullet point.
    - Rewrite all bullet points based on job description.
    - Return the full LaTeX block for Adons Soft Tech.
+5. Explain the changes made in the Summary, Tech skills, MetLife and Adons Soft Tech sections in a concise manner, focusing on how they align with the job description.
 
 
-5. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. Make sure you update todays date and company address and all the [] wich needs to be filled according to the given job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
+6. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. Make sure you update todays date and company address and all the [] wich needs to be filled according to the given job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
 
-6. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume. make sure to update the cold email template with the job. make sure to include the missing values in the cold email template.
-7.With the above poits updated for latex,  Give me the Final latex code for the resume.
+7. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume. make sure to update the cold email template with the job. make sure to include the missing values in the cold email template.
+8.With the above points updated for latex,  Give me the Final latex code for the resume.
 
 ===========================
 📝 OUTPUT FORMAT:
@@ -75,6 +76,7 @@ Example format:
   "skillsLatex": "Your LaTeX for skills section with \\\\begin{tabular}...",
   "metlifeLatex": "Your LaTeX block for MetLife experience with \\\\item ...",
   "adonsLatex": "Your LaTeX block for Adons Soft Tech experience...",
+  "changes":"plain text changes made in the Summary, Tech skills, MetLife and Adons Soft Tech sections.",
   "coverLetter": "Plain text cover letter.",
   "coldEmail": "Plain text cold email.",
   "FinalResumeLatex": "Final LaTeX code for the resume , make sure you dont do any changes to the nagarro work experience , and output latex with escaped text like \\\\documentclass{resume} and \\\\end{document}..."
@@ -120,9 +122,9 @@ Languages & Core \\& Advanced Java, Java 8/11, Python, C, C++, Golang, SQL \\\\
 Methodologies \\& OS & SDLC, Agile, Waterfall, Requirements Gathering, Linux, Windows, MacOS \\\\
 Frameworks \\& IDEs & SpringBoot, Microservices, Hibernate, JPA, JSF, React.JS, Vue.JS, Node.JS. \\\\
 Web Technologies & HTML, CSS, JavaScript, TypeScript, Next.js, Bootstrap, jQuery, Ajax, JSON, XML \\\\
-Cloud \\& Application Servers & Oracle Fusion ERP (exposure), AWS (VPC, EC2, S3, ELB), Azure, Tomcat, Docker \\\\
-Version Control \\& Tools & Git, GitHub, Maven, Gradle, Jira, Jenkins, JUnit, JMeter, CI/CD, Lucidchart, Visio \\\\
-Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets, JSP, JSTL, JDBC, JavaBeans, JavaMail \\\\
+Cloud/Application Servers & AWS (VPC, EC2, S3, ELB), Azure, Tomcat, Docker \\\\
+Version Control \\& Tools & Git, GitHub, Maven, Gradle, Jira, Jenkins, CI/CD \\\\
+Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets, JSP \\\\
 \\end{tabular}
 \\end{rSection}
 

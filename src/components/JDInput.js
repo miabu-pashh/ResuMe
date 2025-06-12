@@ -28,6 +28,7 @@ function JDInput({ onJDUpdate }) {
   const [skillsLatex, setSkillsLatex] = useState("");
   const [metlifeLatex, setMetlifeLatex] = useState("");
   const [adonsLatex, setAdonsLatex] = useState("");
+  const [changes, setChanges] = useState(""); // Added changes state
   const [coverLetter, setCoverLetter] = useState("");
   const [coldEmail, setColdEmail] = useState("");
 
@@ -84,6 +85,7 @@ function JDInput({ onJDUpdate }) {
     setSkillsLatex(result.skillsLatex || "");
     setMetlifeLatex(result.metlifeLatex || "");
     setAdonsLatex(result.adonsLatex || "");
+    setChanges(result.changes || ""); // Set changes from the result
     setCoverLetter(result.coverLetter || "");
     setColdEmail(result.coldEmail || "");
     setFinalResumeLatex(result.FinalResumeLatex || "");
@@ -230,6 +232,7 @@ function JDInput({ onJDUpdate }) {
         </div>
 
         <div className="right-panel">
+          {renderBox("Changes Made", changes)}
           {renderBox("Final Resume", FinalResumeLatex)}
           {renderBox("CoverLetter For Given Job", coverLetter)}
           {renderBox("ColdMail For Given Job", coldEmail)}
