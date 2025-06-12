@@ -51,6 +51,7 @@ export async function callGeminiAPI(prompt) {
       skillsLatex: parsed.skillsLatex || "",
       metlifeLatex: parsed.metlifeLatex || "",
       adonsLatex: parsed.adonsLatex || "",
+      changes: parsed.changes || "", // added changes field
       coverLetter: parsed.coverLetter || "",
       coldEmail: parsed.coldEmail || "",
       FinalResumeLatex: parsed.FinalResumeLatex || "",
@@ -66,6 +67,7 @@ export async function callGeminiAPI(prompt) {
       skillsLatex: "",
       metlifeLatex: "",
       adonsLatex: "",
+      changes: "", // added changes field
       coverLetter: "",
       coldEmail: "",
       FinalResumeLatex: "",
